@@ -8,9 +8,9 @@ gemspec
 gem "irb"
 gem "rake", "~> 13.0"
 
-gem "rspec", "~> 3.12"
-gem "webmock", "~> 3.18"
 gem "activesupport", ">= 7.0"
 gem "generator_spec"
+gem "rspec", "~> 3.12"
+gem "webmock", "~> 3.18"
 
 gem "rubocop", "~> 1.21"

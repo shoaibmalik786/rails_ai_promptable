@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 module RailsAIPromptable
   module Providers
@@ -16,15 +16,15 @@ module RailsAIPromptable
       def generate(prompt:, model:, temperature:, format:)
         uri = URI.parse("#{@base_url}/chat/completions")
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = uri.scheme == 'https'
-        request = Net::HTTP::Post.new(uri.request_uri, initheader = {
-          'Content-Type' => 'application/json',
-          'Authorization' => "Bearer #{@api_key}"
-        })
+        http.use_ssl = uri.scheme == "https"
+        request = Net::HTTP::Post.new(uri.request_uri, {
+                                        "Content-Type" => "application/json",
+                                        "Authorization" => "Bearer #{@api_key}"
+                                      })
 
         body = {
           model: model,
-          messages: [{ role: 'user', content: prompt }],
+          messages: [{ role: "user", content: prompt }],
           temperature: temperature
         }
 
@@ -34,8 +34,8 @@ module RailsAIPromptable
         parsed = JSON.parse(response.body)
 
         # naive extraction
-        parsed.dig('choices', 0, 'message', 'content')
-      rescue => e
+        parsed.dig("choices", 0, "message", "content")
+      rescue StandardError => e
         RailsAIPromptable.configuration.logger.error("[rails_ai_promptable] openai error: #{e.message}")
         nil
       end

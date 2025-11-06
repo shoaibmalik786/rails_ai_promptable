@@ -9,7 +9,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["shoaib2109@gmail.com"]
 
   spec.summary       = "Add AI promptable behavior to your Rails models and classes."
-  spec.description   = "rails_ai_promptable makes it easy to integrate AI-driven features into your Rails application. It allows you to define promptable methods, chain context, and connect with AI APIs like OpenAI, Anthropic, or local LLMs with minimal setup."
+  spec.description   = "rails_ai_promptable makes it easy to integrate AI-driven features into your Rails application. " \
+                       "It allows you to define promptable methods, chain context, and connect with AI APIs like OpenAI, " \
+                       "Anthropic, or local LLMs with minimal setup."
   spec.homepage      = "https://github.com/shoaibmalik786/rails_ai_promptable"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
@@ -18,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"]      = spec.homepage
   spec.metadata["source_code_uri"]   = "https://github.com/shoaibmalik786/rails_ai_promptable"
   spec.metadata["changelog_uri"]     = "https://github.com/shoaibmalik786/rails_ai_promptable/blob/main/CHANGELOG.md"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   # Files included in the gem
   gemspec = File.basename(__FILE__)
@@ -33,6 +36,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Dependencies
-  spec.add_dependency "rails", ">= 7.0"
   spec.add_dependency "httparty", ">= 0.20"
+  spec.add_dependency "rails", ">= 7.0"
 end

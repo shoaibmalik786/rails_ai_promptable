@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'logger'
+
+require "logger"
 
 module RailsAIPromptable
   class Logger

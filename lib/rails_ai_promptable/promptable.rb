@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/concern'
+require "active_support/concern"
 
 module RailsAIPromptable
   module Promptable
@@ -13,6 +13,7 @@ module RailsAIPromptable
     class_methods do
       def prompt_template(template = nil)
         return ai_prompt_template if template.nil?
+
         self.ai_prompt_template = template
       end
 
@@ -21,7 +22,8 @@ module RailsAIPromptable
         template = RailsAIPromptable::TemplateRegistry.get(name)
 
         if template.nil?
-          raise ArgumentError, "Template '#{name}' not found. Available templates: #{RailsAIPromptable::TemplateRegistry.list.join(', ')}"
+          raise ArgumentError,
+                "Template '#{name}' not found. Available templates: #{RailsAIPromptable::TemplateRegistry.list.join(", ")}"
         end
 
         self.ai_prompt_template = template
@@ -29,12 +31,12 @@ module RailsAIPromptable
     end
 
     def ai_generate(context: {}, model: nil, temperature: nil, format: :text)
-      template = self.class.ai_prompt_template || ''
+      template = self.class.ai_prompt_template || ""
       prompt = render_template(template, context)
 
       RailsAIPromptable.configuration.logger.info("[rails_ai_promptable] prompt: ")
 
-      response = RailsAIPromptable.client.generate(
+      RailsAIPromptable.client.generate(
         prompt: prompt,
         model: model || RailsAIPromptable.configuration.default_model,
         temperature: temperature || 0.7,
@@ -42,11 +44,10 @@ module RailsAIPromptable
       )
 
       # basic parsing
-      response
     end
 
     def ai_generate_later(context: {}, **kwargs)
-      RailsAIPromptable.configuration.logger.info('[rails_ai_promptable] enqueuing ai_generate_later')
+      RailsAIPromptable.configuration.logger.info("[rails_ai_promptable] enqueuing ai_generate_later")
       # Use ActiveJob to enqueue. We'll provide a default job class in later steps.
       RailsAIPromptable::BackgroundJob.perform_later(self.class.name, id, context, kwargs)
     end
@@ -56,9 +57,12 @@ module RailsAIPromptable
     def render_template(template, context)
       template % context.transform_keys(&:to_sym)
     rescue KeyError
-      # fallback: simple interpolation using gsub
+      # fallback: simple interpolation using gsub for both %{key} and %<key>s formats
       result = template.dup
-      context.each { |k, v| result.gsub!("%{#{k}}", v.to_s) }
+      context.each do |k, v|
+        result.gsub!("%{#{k}}", v.to_s)
+        result.gsub!("%<#{k}>s", v.to_s)
+      end
       result
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'yaml'
+require "yaml"
 
 module RailsAIPromptable
   class TemplateRegistry
@@ -43,14 +43,14 @@ module RailsAIPromptable
       def load_from_directory(directory_path)
         return unless Dir.exist?(directory_path)
 
-        Dir.glob(File.join(directory_path, '*')).each do |file_path|
+        Dir.glob(File.join(directory_path, "*")).each do |file_path|
           next unless File.file?(file_path)
 
-          name = File.basename(file_path, '.*')
+          name = File.basename(file_path, ".*")
 
-          if file_path.end_with?('.yml', '.yaml')
+          if file_path.end_with?(".yml", ".yaml")
             content = YAML.load_file(file_path)
-            template = content.is_a?(Hash) ? content['template'] : content.to_s
+            template = content.is_a?(Hash) ? content["template"] : content.to_s
           else
             template = File.read(file_path)
           end

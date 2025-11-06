@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 begin
-  require 'active_job'
+  require "active_job"
 rescue LoadError
   # ActiveJob not available, skip loading BackgroundJob
 end
@@ -19,9 +19,7 @@ if defined?(ActiveJob)
         result = record.ai_generate(context: context, **(kwargs || {}))
 
         # Call the callback method if defined on the record
-        if record.respond_to?(:ai_generation_completed)
-          record.ai_generation_completed(result)
-        end
+        record.ai_generation_completed(result) if record.respond_to?(:ai_generation_completed)
 
         # Store result in ai_generated_content attribute if it exists
         if record.respond_to?(:ai_generated_content=)

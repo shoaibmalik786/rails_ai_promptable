@@ -10,8 +10,8 @@ WebMock.disable_net_connect!(allow_localhost: true)
 
 # Generator testing support
 begin
-  require 'rails/generators'
-  require 'generator_spec'
+  require "rails/generators"
+  require "generator_spec"
 rescue LoadError
   # Generator testing gems not available, skip generator tests
 end

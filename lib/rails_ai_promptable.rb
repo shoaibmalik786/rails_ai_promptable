@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails_ai_promptable/version'
-require 'rails_ai_promptable/configuration'
-require 'rails_ai_promptable/template_registry'
-require 'rails_ai_promptable/promptable'
-require 'rails_ai_promptable/providers'
-require 'rails_ai_promptable/logger'
-require 'rails_ai_promptable/background_job'
+require "rails_ai_promptable/version"
+require "rails_ai_promptable/configuration"
+require "rails_ai_promptable/template_registry"
+require "rails_ai_promptable/promptable"
+require "rails_ai_promptable/providers"
+require "rails_ai_promptable/logger"
+require "rails_ai_promptable/background_job"
 
 module RailsAIPromptable
   class << self

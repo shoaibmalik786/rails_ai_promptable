@@ -13,18 +13,18 @@ RSpec.describe RailsAIPromptable do
     expect(defined?(RailsAIPromptable::Promptable)).to be_truthy
   end
 
-  describe '.configure' do
-    it 'yields configuration block' do
+  describe ".configure" do
+    it "yields configuration block" do
       RailsAIPromptable.configure do |config|
         config.provider = :openai
-        config.api_key = 'test_key'
+        config.api_key = "test_key"
       end
 
       expect(RailsAIPromptable.configuration.provider).to eq(:openai)
-      expect(RailsAIPromptable.configuration.api_key).to eq('test_key')
+      expect(RailsAIPromptable.configuration.api_key).to eq("test_key")
     end
 
-    it 'creates configuration if not exists' do
+    it "creates configuration if not exists" do
       RailsAIPromptable.configuration = nil
       RailsAIPromptable.configure
 
@@ -32,23 +32,23 @@ RSpec.describe RailsAIPromptable do
     end
   end
 
-  describe '.client' do
+  describe ".client" do
     before do
       RailsAIPromptable.configuration = nil
       RailsAIPromptable.reset_client!
     end
 
-    it 'returns a provider client' do
+    it "returns a provider client" do
       RailsAIPromptable.configure do |config|
         config.provider = :openai
-        config.api_key = 'test_key'
+        config.api_key = "test_key"
       end
 
       client = RailsAIPromptable.client
       expect(client).to be_a(RailsAIPromptable::Providers::OpenAIProvider)
     end
 
-    it 'memoizes the client' do
+    it "memoizes the client" do
       RailsAIPromptable.configure do |config|
         config.provider = :openai
       end
@@ -60,8 +60,8 @@ RSpec.describe RailsAIPromptable do
     end
   end
 
-  describe '.reset_client!' do
-    it 'resets the memoized client' do
+  describe ".reset_client!" do
+    it "resets the memoized client" do
       RailsAIPromptable.configure do |config|
         config.provider = :openai
       end
