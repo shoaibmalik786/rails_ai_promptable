@@ -1,0 +1,46 @@
+===============================================================================
+
+  RailsAIPromptable has been successfully installed!
+
+===============================================================================
+
+Next steps:
+
+  1. Set up your API key in your environment:
+
+     <%= provider_config[:api_key].include?('OPENAI') ? 'export OPENAI_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('ANTHROPIC') ? 'export ANTHROPIC_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('GEMINI') ? 'export GEMINI_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('COHERE') ? 'export COHERE_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('AZURE') ? 'export AZURE_OPENAI_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('MISTRAL') ? 'export MISTRAL_API_KEY="your-api-key-here"' : '' %>
+     <%= provider_config[:api_key].include?('OPENROUTER') ? 'export OPENROUTER_API_KEY="your-api-key-here"' : '' %>
+
+  2. Review and customize the configuration in:
+     config/initializers/rails_ai_promptable.rb
+
+  3. Include RailsAIPromptable::Promptable in your models:
+
+     class Article < ApplicationRecord
+       include RailsAIPromptable::Promptable
+
+       prompt_template "Summarize this article: %{content}"
+
+       def generate_summary
+         ai_generate(context: { content: body })
+       end
+     end
+
+  4. Start generating AI content!
+
+     article = Article.first
+     summary = article.generate_summary
+
+===============================================================================
+
+For more information and examples:
+
+  • Documentation: https://github.com/shoaibmalik786/rails_ai_promptable
+  • Issues: https://github.com/shoaibmalik786/rails_ai_promptable/issues
+
+===============================================================================
