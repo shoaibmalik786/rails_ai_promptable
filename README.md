@@ -3,7 +3,7 @@
 A powerful and flexible gem to integrate AI capabilities into your Rails applications. Support for multiple AI providers including OpenAI, Anthropic (Claude), Google Gemini, Cohere, Azure OpenAI, Mistral AI, and OpenRouter.
 
 [![Gem Version](https://badge.fury.io/rb/rails_ai_promptable.svg)](https://badge.fury.io/rb/rails_ai_promptable)
-[![Tests](https://github.com/shoaibmalik786/rails_ai_promptable/workflows/tests/badge.svg)](https://github.com/shoaibmalik786/rails_ai_promptable/actions)
+[![Ruby](https://github.com/shoaibmalik786/rails_ai_promptable/actions/workflows/main.yml/badge.svg)](https://github.com/shoaibmalik786/rails_ai_promptable/actions)
 
 ## Features
 

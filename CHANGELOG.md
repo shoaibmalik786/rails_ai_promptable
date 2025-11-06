@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [0.1.2] - 2025-11-06
+
+### Fixed
+- Fixed GitHub Actions badge URL in README to display correctly
+- Fixed gem version badge display on RubyGems page
+
 ## [0.1.1] - 2025-11-06
 
 ### Fixed
