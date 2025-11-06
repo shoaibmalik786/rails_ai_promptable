@@ -10,3 +10,6 @@
 # rspec failure tracking
 .rspec_status
 .tool-versions
+
+# Ignore built gem files
+*.gem
