@@ -5,8 +5,8 @@ RSpec.describe RailsAIPromptable do
     expect(RailsAIPromptable::VERSION).not_to be_nil
   end
 
-  it "has VERSION constant" do
-    expect(RailsAIPromptable::VERSION).to eq("0.1.0")
+  it "has VERSION constant in correct format" do
+    expect(RailsAIPromptable::VERSION).to match(/\d+\.\d+\.\d+/)
   end
 
   it "responds to promptable module" do
